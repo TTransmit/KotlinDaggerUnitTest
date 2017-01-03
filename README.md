@@ -1,6 +1,8 @@
 # KotlinDaggerUnitTest
 Demonstrates an issue with Kotlin 1.0.6 that annotations in the test project fail to generate code
 
+This is  for the following issue in Kotlin: https://youtrack.jetbrains.com/issue/KT-15459
+
 The app compiles and runs fine. However, running the tests with `./gradlew testDebugUnitTest` or through Android Studio gives the error:
 ```
 KotlinDaggerUnitTest/app/src/test/kotlin/com/example/kotlindaggerunittest/TestApplication.kt: (6, 23): Unresolved reference: DaggerTestComponent
