@@ -5,8 +5,7 @@ import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.robolectric.RobolectricGradleTestRunner
 import org.robolectric.annotation.Config
 import javax.inject.Inject
@@ -27,7 +26,6 @@ class MyNonLifecycleClassTest {
         thirdPartyAnalyticsWrapper.inject()
     }
 
-    // This test passes
     @Test
     fun testAnalyticsWrappersTheSame() {
         assertEquals(thirdPartyAnalyticsWrapper, myNonLifecycleClass.thirdPartyAnalyticsWrapper)
@@ -37,11 +35,15 @@ class MyNonLifecycleClassTest {
         assertEquals("test", myNonLifecycleClass.thirdPartyAnalyticsWrapper.getMyHello())
     }
 
-    // This test fails
     @Test
     fun testMakeError() {
         myNonLifecycleClass.makeError()
-        verify(thirdPartyAnalyticsWrapper).trackLog("test")
+        verify(thirdPartyAnalyticsWrapper).trackLog("error")
+    }
+
+    @Test
+    fun testVerifyDoesNotCallItself() {
+        verify(thirdPartyAnalyticsWrapper, never()).trackLog("test2")
     }
 
 }

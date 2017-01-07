@@ -14,7 +14,7 @@ open class ThirdPartyAnalyticsWrapper @Inject constructor() {
         inject()
     }
 
-    fun inject() {
+    open fun inject() {
         MyApplication.myComponent.inject(this)
     }
 
@@ -22,7 +22,7 @@ open class ThirdPartyAnalyticsWrapper @Inject constructor() {
         return hello
     }
 
-    fun trackLog(message: String) {
+    open fun trackLog(message: String) {
         thirdPartyLogger.logStuff(message)
     }
 
